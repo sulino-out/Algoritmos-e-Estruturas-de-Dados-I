@@ -6,6 +6,7 @@
 
 // Inclusão de bibliotecas
 #include <stdio.h>
+#include <stdlib.h>
 
 // Definição de constantes
 
@@ -21,9 +22,18 @@ int main()
 	int opcao; // Cria a variável para armazenar a opção do menu
 	int num_elementos; // Cria a variável para armazenar o número de elementos do vetor
 	
+	// Pede o tamanho do vetor
+	printf("Digite o tamanho do vetor: ");
 	scanf("%d", &num_elementos);
 
 	int *vetor = (int *) malloc(sizeof(int) * num_elementos); // Aloca memória dinâmicamente com tamanho 'num_elementos'
+	
+	// Pede por cada um dos elementos do vetor
+	for(int i = 0; i < num_elementos; i++)
+	{
+		printf("Digite o elemento %d: ", i);
+		scanf("%d", &vetor[i]);
+	}
 
 	// Intera até que a opção saída seja escolhida
 	do
@@ -34,6 +44,7 @@ int main()
 		printf("2. Busca Sequencial no vetor de entrada\n");
 		printf("3. Busca Binária Iterativa no vetor de entrada\n");
 		printf("4. Busca Binária Recursiva no vetor de entrada\n");
+		printf("5. Encerrar programa.\n");
 
 		scanf("%d", &opcao); // Pede a opção a usuário
 
@@ -50,11 +61,11 @@ int main()
 				break;
 			case 3:
 				// Busca binária iterativa no vetor
-				busca_binaria_iterativa();
+				busca_binaria_iterativa(vetor, num_elementos);
 				break;
 			case 4:
 				// Busca binária recursive no vetor
-				busca_binaria_recursiva();
+				busca_binaria_recursiva(vetor, num_elementos);
 				break;
 			case 5:
 				// Encerrar programa
