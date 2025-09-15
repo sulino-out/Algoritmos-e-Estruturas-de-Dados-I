@@ -84,6 +84,15 @@ int main()
 // Outras funções
 void inverter_ordem(int vetor[], int n)
 {
+	for (int i = n-1; i >= 0; i--)
+    {
+        printf ("%d", vetor[i]);
+        if (i > 0)
+        {
+            printf (" "); //espaço entre os numeros, mas nao depois do ultimo
+        }
+    }
+	printf("\n");
 
 }
 
