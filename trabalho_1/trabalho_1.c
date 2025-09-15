@@ -106,7 +106,18 @@ void inverter_ordem(int vetor[], int n)
 
 void busca_sequencial(int vetor[], int n)
 {
-	
+	int elementos;
+
+	scanf ("%d", &elementos);
+
+	for(int i = 0; i < n; i++){ // Percorre todos os elementos do vetor
+		if (vetor[i] == elementos){
+			printf ("SIM\n"); // Se tiver um elemento no vetor igual ao elemento que queremos procurar, imprime "SIM"
+			return;
+		} 	
+	} 
+	printf ("NAO\n");
+
 }
 
 void busca_binaria_iterativa(int vetor[], int n)
