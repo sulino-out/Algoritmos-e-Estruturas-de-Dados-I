@@ -14,7 +14,7 @@
 void inverter_ordem(int vetor[], int n);
 void busca_sequencial(int vetor[], int n);
 void busca_binaria_iterativa(int vetor[], int n);
-void busca_binaria_recursiva(int vetor[], int n);
+void busca_binaria_recursiva(int vetor[], int elemento, int l, int r);
 
 // Função main
 int main()
@@ -70,7 +70,7 @@ int main()
 				// Busca binária recursive no vetor
 				scanf("%d", &elemento);
 				left = 0;
-				right = n - 1;
+				right = num_elementos - 1;
 
 				busca_binaria_recursiva(vetor, elemento, left, right);
 				break;
@@ -114,7 +114,7 @@ void busca_binaria_iterativa(int vetor[], int n)
 	
 }
 
-void busca_binaria_recursiva(int vetor[], int n)
+void busca_binaria_recursiva(int vetor[], int elemento, int l, int r)
 {
 	
 }
