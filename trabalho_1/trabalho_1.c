@@ -85,6 +85,9 @@ int main()
 
 	}while(opcao != 5);
 
+	free(vetor);
+	vetor = NULL;
+
 	return 0;
 }
 
