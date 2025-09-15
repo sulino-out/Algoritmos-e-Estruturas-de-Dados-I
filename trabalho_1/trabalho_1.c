@@ -93,12 +93,11 @@ void inverter_ordem(int vetor[], int n)
         }
     }
 	printf("\n");
-
 }
 
 void busca_sequencial(int vetor[], int n)
 {
-
+	
 }
 
 void busca_binaria_iterativa(int vetor[], int n)
