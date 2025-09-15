@@ -21,6 +21,9 @@ int main()
 {
 	int opcao; // Cria a variável para armazenar a opção do menu
 	int num_elementos; // Cria a variável para armazenar o número de elementos do vetor
+	int elemento;
+	int left;
+	int right;
 	
 	// Pede o tamanho do vetor
 	printf("Digite o tamanho do vetor: ");
@@ -65,7 +68,11 @@ int main()
 				break;
 			case 4:
 				// Busca binária recursive no vetor
-				busca_binaria_recursiva(vetor, num_elementos);
+				scanf("%d", &elemento);
+				left = 0;
+				right = n - 1;
+
+				busca_binaria_recursiva(vetor, elemento, left, right);
 				break;
 			case 5:
 				// Encerrar programa
@@ -84,15 +91,17 @@ int main()
 // Outras funções
 void inverter_ordem(int vetor[], int n)
 {
+	// Imprime o vetor na ordem inversa
 	for (int i = n-1; i >= 0; i--)
-    {
-        printf ("%d", vetor[i]);
-        if (i > 0)
-        {
-            printf (" "); //espaço entre os numeros, mas nao depois do ultimo
-        }
-    }
-	printf("\n");
+	{
+		printf ("%d", vetor[i]);
+		if (i > 0)
+		{
+			printf (" "); // Imprime espaço entre os números, mas nao depois do ultimo
+		}
+	}
+
+	printf("\n"); // Imprime uma quebra de linha ao final
 }
 
 void busca_sequencial(int vetor[], int n)
@@ -102,10 +111,10 @@ void busca_sequencial(int vetor[], int n)
 
 void busca_binaria_iterativa(int vetor[], int n)
 {
-
+	
 }
 
 void busca_binaria_recursiva(int vetor[], int n)
 {
-
+	
 }
