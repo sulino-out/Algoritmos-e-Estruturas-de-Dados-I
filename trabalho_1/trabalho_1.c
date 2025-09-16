@@ -14,16 +14,17 @@
 void inverter_ordem(int vetor[], int n);
 void busca_sequencial(int vetor[], int n);
 void busca_binaria_iterativa(int vetor[], int n);
-void busca_binaria_recursiva(int vetor[], int elemento, int l, int r);
+void busca_binaria_recursiva(int vetor[], int elemento, int inicio, int fim);
 
 // Função main
 int main()
 {
-	int opcao; // Cria a variável para armazenar a opção do menu
-	int num_elementos; // Cria a variável para armazenar o número de elementos do vetor
+	// Declara as variáveis
+	int opcao; 
+	int num_elementos; 
 	int elemento;
-	int left;
-	int right;
+	int inicio;
+	int fim;
 	
 	// Pede o tamanho do vetor
 	printf("Digite o tamanho do vetor: ");
@@ -31,14 +32,14 @@ int main()
 
 	int *vetor = (int *) malloc(sizeof(int) * num_elementos); // Aloca memória dinâmicamente com tamanho 'num_elementos'
 	
+	printf("Digite os elementos do vetor: ");
 	// Pede por cada um dos elementos do vetor
 	for(int i = 0; i < num_elementos; i++)
 	{
-		printf("Digite o elemento %d: ", i);
 		scanf("%d", &vetor[i]);
 	}
 
-	// Intera até que a opção saída seja escolhida
+	// Itera até que a opção saída seja escolhida
 	do
 	{	
 		// Imprime as opções
@@ -48,6 +49,7 @@ int main()
 		printf("3. Busca Binária Iterativa no vetor de entrada\n");
 		printf("4. Busca Binária Recursiva no vetor de entrada\n");
 		printf("5. Encerrar programa.\n");
+		printf("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
 
 		scanf("%d", &opcao); // Pede a opção a usuário
 
@@ -69,10 +71,10 @@ int main()
 			case 4:
 				// Busca binária recursive no vetor
 				scanf("%d", &elemento);
-				left = 0;
-				right = num_elementos - 1;
+				inicio = 0;
+				fim = num_elementos - 1;
 
-				busca_binaria_recursiva(vetor, elemento, left, right);
+				busca_binaria_recursiva(vetor, elemento, inicio, fim);
 				break;
 			case 5:
 				// Encerrar programa
@@ -85,6 +87,7 @@ int main()
 
 	}while(opcao != 5);
 
+	// Libera a memória alocada
 	free(vetor);
 	vetor = NULL;
 
@@ -128,19 +131,19 @@ void busca_binaria_iterativa(int vetor[], int n)
 	
 }
 
-void busca_binaria_recursiva(int vetor[], int elemento, int l, int r)
+void busca_binaria_recursiva(int vetor[], int elemento, int inicio, int fim)
 {
 	/* Casos base */
 
-	if(r < l) // Caso 1: Left é maior que right (elemento nao encontrado)
+	if(fim < inicio) // Caso 1: Posicao final é menor que a posicao inicial (Elemento nao encontrado)
 	{
 		printf("NAO\n");
 		return;
 	}
 
-	int middle = l + ((r - l) / 2); // Define a posicao intermediária do vetor
+	int meio = inicio + ((fim - inicio) / 2); // Define a posicao intermediária do vetor
 	
-	if(vetor[middle] == elemento) // Caso 2: Elemento encontrado
+	if(vetor[meio] == elemento) // Caso 2: Elemento central do vetor é igual ao desejado (Elemento encontrado)
 	{
 		printf("SIM\n");
 		return;
@@ -148,18 +151,18 @@ void busca_binaria_recursiva(int vetor[], int elemento, int l, int r)
 
 	/* Caso recursivo */
 
-	// Declara as variaveis para os novos left e right
-	int left = l;
-	int right = r;
+	// Declara as variaveis para os novos novo_inicio e novo_fim
+	int novo_inicio = inicio;
+	int novo_fim = fim;
 
-	if(vetor[middle] < elemento) // Se o elemento central do vetor for menor que o elemento, corta a metade da esquerda
+	if(vetor[meio] < elemento) // Se o elemento central do vetor for menor que o elemento, corta a metade da esquerda
 	{
-		left = middle + 1;
+		novo_inicio = meio + 1;
 	}
-	else if(vetor[middle] > elemento) // Se o elemento central do vetor for maior que o elemento, corta a metade da direita
+	else if(vetor[meio] > elemento) // Se o elemento central do vetor for maior que o elemento, corta a metade da direita
 	{
-		right = middle - 1;
+		novo_fim = meio - 1;
 	}
 
-	busca_binaria_recursiva(vetor, elemento, left, right); // Chama recursivamente a funcao
+	busca_binaria_recursiva(vetor, elemento, novo_inicio, novo_fim); // Chama recursivamente a funcao
 }
