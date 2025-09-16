@@ -130,5 +130,36 @@ void busca_binaria_iterativa(int vetor[], int n)
 
 void busca_binaria_recursiva(int vetor[], int elemento, int l, int r)
 {
+	/* Casos base */
+
+	if(r < l) // Caso 1: Left é maior que right (elemento nao encontrado)
+	{
+		printf("NAO\n");
+		return;
+	}
+
+	int middle = l + ((r - l) / 2); // Define a posicao intermediária do vetor
 	
+	if(vetor[middle] == elemento) // Caso 2: Elemento encontrado
+	{
+		printf("SIM\n");
+		return;
+	}
+
+	/* Caso recursivo */
+
+	// Declara as variaveis para os novos left e right
+	int left = l;
+	int right = r;
+
+	if(vetor[middle] < elemento) // Se o elemento central do vetor for menor que o elemento, corta a metade da esquerda
+	{
+		left = middle + 1;
+	}
+	else if(vetor[middle] > elemento) // Se o elemento central do vetor for maior que o elemento, corta a metade da direita
+	{
+		right = middle - 1;
+	}
+
+	busca_binaria_recursiva(vetor, elemento, left, right); // Chama recursivamente a funcao
 }
