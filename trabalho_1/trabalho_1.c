@@ -134,7 +134,7 @@ void busca_sequencial(int vetor[], int n)
 
 }
 
-int busca_binaria_iterativa(int vetor[], int elemento, int inicio, int fim)
+int busca_binaria_iterativa(int vetor[], int elemento, int inicio, int fim) // OK
 {
 	while (inicio <= fim) {
 			int meio = inicio + (fim - inicio) / 2; // Acho defino um meio no vetor
