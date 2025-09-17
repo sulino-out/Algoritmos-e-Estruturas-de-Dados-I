@@ -13,7 +13,7 @@
 // Protótipo de funções
 void inverter_ordem(int vetor[], int n);
 void busca_sequencial(int vetor[], int n);
-void busca_binaria_iterativa(int vetor[], int n);
+int busca_binaria_iterativa(int vetor[], int elemento, int inicio, int fim);
 void busca_binaria_recursiva(int vetor[], int elemento, int inicio, int fim);
 
 // Função main
@@ -66,10 +66,18 @@ int main()
 				break;
 			case 3:
 				// Busca binária iterativa no vetor
-				busca_binaria_iterativa(vetor, num_elementos);
+				scanf("%d", &elemento);
+				inicio = 0;
+				fim = num_elementos - 1;
+				int result = busca_binaria_iterativa(vetor, elemento, inicio, fim);
+					if (result != -1) {
+							printf("Valor encontrado no índice %d.\n", result);
+					} else {
+							printf("Valor não encontrado no vetor.\n");
+					}
 				break;
 			case 4:
-				// Busca binária recursive no vetor
+				// Busca binária recursive no vetors
 				scanf("%d", &elemento);
 				inicio = 0;
 				fim = num_elementos - 1;
@@ -126,9 +134,23 @@ void busca_sequencial(int vetor[], int n)
 
 }
 
-void busca_binaria_iterativa(int vetor[], int n)
+int busca_binaria_iterativa(int vetor[], int elemento, int inicio, int fim)
 {
-	
+	while (inicio <= fim) {
+			int meio = inicio + (fim - inicio) / 2; // Acho defino um meio no vetor
+		
+		if(vetor[meio] == elemento) { // Verifico primeiro se chegamos no elemento que procuramos
+			return meio; // Retorno a posição do valor que procuramos
+		}
+		// Verificamos a seguinte condição, o numero que procuro é menor que o meio? Se for eu analiso o lado direito ou seja meio + 1
+		else if (vetor[meio] < elemento) {
+			inicio = meio + 1;
+		}
+		else { // Condição de que o meio é maior que o elemento, logo procuramos na metade esquerda do vetor, ou seja o fim para no fim - 1
+			fim = meio - 1;
+		}
+	}
+	return -1;
 }
 
 void busca_binaria_recursiva(int vetor[], int elemento, int inicio, int fim)
